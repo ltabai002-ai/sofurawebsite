@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle2, GraduationCap, ExternalLink, PenLine } from "lucide-react";
 import { z } from "zod";
 import { useLang } from "@/components/LanguageContext";
 
@@ -84,6 +84,29 @@ function Contact() {
             <Send className="h-4 w-4" /> {t("Send Message", "বাৰ্তা পঠিয়াওক")}
           </button>
         </form>
+
+        <div className="flex flex-wrap justify-center gap-4 lg:col-span-2">
+          <a
+            href="https://forms.gle/EuSqd3TMgieiuXMXA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 rounded-2xl border-2 border-[#FFD93D] bg-white px-8 py-4 font-bold text-[#1A2A5E] shadow-lg transition hover:border-[#FF9F45] hover:bg-[#FFF8E7] hover:shadow-xl"
+          >
+            <PenLine className="h-6 w-6 text-[#FF9F45]" />
+            <span className="text-lg">{t("Submit Your Work", "আপোনাৰ কাম দাখিল কৰক")}</span>
+            <ExternalLink className="h-5 w-5 text-[#FF9F45]" />
+          </a>
+          <a
+            href="https://forms.gle/FzyNUBfXyvaZJYHJ7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 rounded-2xl bg-gold px-8 py-4 font-bold text-gold-foreground shadow-lg transition hover:opacity-90 hover:shadow-xl"
+          >
+            <GraduationCap className="h-6 w-6" />
+            <span className="text-lg">{t("Register for the Examination", "পৰীক্ষাৰ বাবে পঞ্জীয়ন কৰক")}</span>
+            <ExternalLink className="h-5 w-5" />
+          </a>
+        </div>
       </div>
     </div>
   );

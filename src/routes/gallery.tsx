@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { X } from "lucide-react";
 import heroImg from "@/assets/hero-students.jpg";
-import founderImg from "@/assets/founder.jpg";
-import magazineImg from "@/assets/magazine-cover.jpg";
+import founderImg from "@/assets/founder.webp";
+import magazineImg from "@/assets/magazine.webp";
 import { useLang } from "@/components/LanguageContext";
 
 export const Route = createFileRoute("/gallery")({

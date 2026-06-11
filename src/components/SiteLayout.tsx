@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Facebook, Mail, MapPin } from "lucide-react";
 import logoAsset from "@/assets/sofura_logo.png.asset.json";
+import studentsImg from "@/assets/students.jpeg";
+import sofuraLogo from "@/assets/sofuralogo.png";
 import { LanguageProvider, useLang } from "./LanguageContext";
 
 const NAV = [
@@ -11,6 +13,7 @@ const NAV = [
   { to: "/exam", en: "Scholarship Exam", as: "বৃত্তি পৰীক্ষা" },
   { to: "/gallery", en: "Gallery", as: "ছবিৰ চিত্ৰশালা" },
   { to: "/contact", en: "Contact", as: "যোগাযোগ" },
+  { to: "/press-release", en: "Press Release", as: "প্ৰেছ বিজ্ঞপ্তি" },
 ] as const;
 
 function Header() {
@@ -20,11 +23,7 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-lg">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoAsset.url} alt="SOFURA" width={48} height={48} className="h-10 w-auto" />
-          <div className="hidden sm:block">
-            <div className="font-serif text-lg font-bold text-primary leading-none">SOFURA</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Educational Trust · 1982</div>
-          </div>
+          <img src={sofuraLogo} alt="SOFURA" className="h-12 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -84,16 +83,19 @@ function Header() {
 function Footer() {
   const { t } = useLang();
   return (
-    <footer className="mt-24 border-t border-border bg-primary text-primary-foreground">
+    <footer className="mt-24 border-t border-border relative overflow-hidden bg-primary/40 text-primary-foreground">
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={studentsImg}
+          alt="Students taking exam in a village school"
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/40 to-primary/30" />
+      </div>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
         <div>
-          <div className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="SOFURA" width={48} height={48} className="h-12 w-auto bg-white rounded-lg p-1" />
-            <div>
-              <div className="font-serif text-xl font-bold">SOFURA</div>
-              <div className="text-xs opacity-75">Educational Trust · Since 1982</div>
-            </div>
-          </div>
+          <img src={sofuraLogo} alt="SOFURA" className="h-16 w-auto" />
           <p className="mt-4 text-sm opacity-80 max-w-xs">
             {t(
               "A 40-year journey of literature and education in Assam.",

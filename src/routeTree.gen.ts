@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrizeRouteImport } from './routes/prize'
+import { Route as PressReleaseRouteImport } from './routes/press-release'
 import { Route as MagazineRouteImport } from './routes/magazine'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ExamRouteImport } from './routes/exam'
@@ -16,6 +18,16 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PrizeRoute = PrizeRouteImport.update({
+  id: '/prize',
+  path: '/prize',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressReleaseRoute = PressReleaseRouteImport.update({
+  id: '/press-release',
+  path: '/press-release',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MagazineRoute = MagazineRouteImport.update({
   id: '/magazine',
   path: '/magazine',
@@ -54,6 +66,8 @@ export interface FileRoutesByFullPath {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
+  '/press-release': typeof PressReleaseRoute
+  '/prize': typeof PrizeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +76,8 @@ export interface FileRoutesByTo {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
+  '/press-release': typeof PressReleaseRoute
+  '/prize': typeof PrizeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +87,30 @@ export interface FileRoutesById {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
+  '/press-release': typeof PressReleaseRoute
+  '/prize': typeof PrizeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/exam' | '/gallery' | '/magazine'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/exam'
+    | '/gallery'
+    | '/magazine'
+    | '/press-release'
+    | '/prize'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/exam' | '/gallery' | '/magazine'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/exam'
+    | '/gallery'
+    | '/magazine'
+    | '/press-release'
+    | '/prize'
   id:
     | '__root__'
     | '/'
@@ -85,6 +119,8 @@ export interface FileRouteTypes {
     | '/exam'
     | '/gallery'
     | '/magazine'
+    | '/press-release'
+    | '/prize'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,10 +130,26 @@ export interface RootRouteChildren {
   ExamRoute: typeof ExamRoute
   GalleryRoute: typeof GalleryRoute
   MagazineRoute: typeof MagazineRoute
+  PressReleaseRoute: typeof PressReleaseRoute
+  PrizeRoute: typeof PrizeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/prize': {
+      id: '/prize'
+      path: '/prize'
+      fullPath: '/prize'
+      preLoaderRoute: typeof PrizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press-release': {
+      id: '/press-release'
+      path: '/press-release'
+      fullPath: '/press-release'
+      preLoaderRoute: typeof PressReleaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/magazine': {
       id: '/magazine'
       path: '/magazine'
@@ -150,7 +202,19 @@ const rootRouteChildren: RootRouteChildren = {
   ExamRoute: ExamRoute,
   GalleryRoute: GalleryRoute,
   MagazineRoute: MagazineRoute,
+  PressReleaseRoute: PressReleaseRoute,
+  PrizeRoute: PrizeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
