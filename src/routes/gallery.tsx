@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { X } from "lucide-react";
-import heroImg from "@/assets/hero-students.jpg";
+import { useState } from "react";
+import { X, ChevronDown } from "lucide-react";
 import founderImg from "@/assets/founder.webp";
-import magazineImg from "@/assets/magazine.webp";
 import { useLang } from "@/components/LanguageContext";
+
+const examImages = import.meta.glob<string>('@/assets/examimgassam/*.webp', { eager: true, query: '?url', import: 'default' });
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -16,19 +16,10 @@ export const Route = createFileRoute("/gallery")({
   component: Gallery,
 });
 
-const YEARS = ["All", "2024", "2023", "2022", "2021"];
-const REGIONS = ["All", "Guwahati", "Jorhat", "Dibrugarh", "Silchar", "Tezpur"];
-
-const PHOTOS = [
-  { src: heroImg, year: "2024", region: "Guwahati", caption: "Guwahati Centre — 2024" },
-  { src: magazineImg, year: "2024", region: "Jorhat", caption: "Jorhat Centre — 2024" },
-  { src: heroImg, year: "2023", region: "Dibrugarh", caption: "Dibrugarh Centre — 2023" },
-  { src: magazineImg, year: "2023", region: "Silchar", caption: "Silchar Centre — 2023" },
-  { src: heroImg, year: "2022", region: "Tezpur", caption: "Tezpur Centre — 2022" },
-  { src: magazineImg, year: "2022", region: "Guwahati", caption: "Guwahati Centre — 2022" },
-  { src: heroImg, year: "2021", region: "Jorhat", caption: "Jorhat Centre — 2021" },
-  { src: magazineImg, year: "2021", region: "Dibrugarh", caption: "Dibrugarh Centre — 2021" },
-];
+const PHOTOS = Object.values(examImages).map((src) => ({
+  src,
+  caption: "Sofura Talent Examination",
+}));
 
 const ARCHIVES = [
   { src: founderImg, caption: "Editorial meeting, Guwahati — 1985" },
@@ -38,32 +29,19 @@ const ARCHIVES = [
 
 function Gallery() {
   const { t } = useLang();
-  const [year, setYear] = useState("All");
-  const [region, setRegion] = useState("All");
+  const [visible, setVisible] = useState(8);
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(null);
-
-  const filtered = useMemo(
-    () => PHOTOS.filter((p) => (year === "All" || p.year === year) && (region === "All" || p.region === region)),
-    [year, region]
-  );
+  const shown = PHOTOS.slice(0, visible);
+  const hasMore = visible < PHOTOS.length;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-24">
       <span className="text-xs font-semibold uppercase tracking-widest text-gold">{t("Gallery", "চিত্ৰশালা")}</span>
-      <h1 className="mt-2 font-serif text-5xl font-bold text-primary md:text-6xl">{t("Moments from Across Assam", "অসমজুৰি স্মৃতি")}</h1>
-
-      {/* Filters */}
-      <div className="mt-8 flex flex-wrap gap-4">
-        <Select label={t("Year", "বছৰ")} value={year} onChange={setYear} options={YEARS} />
-        <Select label={t("Region", "অঞ্চল")} value={region} onChange={setRegion} options={REGIONS} />
-        <div className="ml-auto self-end text-sm text-muted-foreground">
-          {filtered.length} {t("photos", "ফটো")}
-        </div>
-      </div>
+      <h1 className="mt-2 font-serif text-5xl font-bold text-primary md:text-6xl">{t("Glimpses of Sofura Talent Examination Across Assam", "অসমজুৰি সঁফুৰা প্ৰতিভা পৰীক্ষাৰ ঝলক")}</h1>
 
       {/* Grid */}
       <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {filtered.map((p, i) => (
+        {shown.map((p, i) => (
           <button
             key={i}
             onClick={() => setLightbox({ src: p.src, caption: p.caption })}
@@ -75,12 +53,18 @@ function Gallery() {
             </div>
           </button>
         ))}
-        {filtered.length === 0 && (
-          <div className="col-span-full rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
-            {t("No photos match these filters.", "এই ফিল্টাৰৰ বাবে ফটো নাই।")}
-          </div>
-        )}
       </div>
+
+      {hasMore && (
+        <div className="mt-10 flex justify-center">
+          <button
+            onClick={() => setVisible((v) => v + 8)}
+            className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/20 px-8 py-3.5 font-play text-sm font-bold text-[#FF9F45] transition hover:bg-[#FFD93D]/30 hover:shadow-md"
+          >
+            {t("See More", "আৰু চাওক")} <ChevronDown className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Archives */}
       <section className="mt-20">
@@ -119,20 +103,5 @@ function Gallery() {
         </div>
       )}
     </div>
-  );
-}
-
-function Select({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
-  return (
-    <label className="flex flex-col gap-1">
-      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="rounded-2xl border-2 border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground focus:border-gold focus:outline-none min-w-[180px]"
-      >
-        {options.map((o) => <option key={o}>{o}</option>)}
-      </select>
-    </label>
   );
 }
