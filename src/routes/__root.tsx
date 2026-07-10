@@ -11,7 +11,6 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteLayout } from "../components/SiteLayout";
 
 function NotFoundComponent() {
   return (
@@ -79,21 +78,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SOFURA Educational Trust — Inspiring Young Minds Since 1982" },
-      { name: "description", content: "SOFURA Educational Trust: Assamese children's magazine and statewide Talent Discovery & Scholarship Exam, honoring the legacy of Dr. Bhabendranath Saikia." },
+      { name: "description", content: "SOFURA: Assam's beloved children's magazine and statewide Talent Discovery & Scholarship Exam since 1982." },
+      { name: "author", content: "Lovable" },
       { property: "og:title", content: "SOFURA Educational Trust — Inspiring Young Minds Since 1982" },
-      { property: "og:description", content: "SOFURA Educational Trust: Assamese children's magazine and statewide Talent Discovery & Scholarship Exam, honoring the legacy of Dr. Bhabendranath Saikia." },
+      { property: "og:description", content: "SOFURA: Assam's beloved children's magazine and statewide Talent Discovery & Scholarship Exam since 1982." },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "SOFURA Educational Trust — Inspiring Young Minds Since 1982" },
-      { name: "twitter:description", content: "SOFURA Educational Trust: Assamese children's magazine and statewide Talent Discovery & Scholarship Exam, honoring the legacy of Dr. Bhabendranath Saikia." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8898ae25-82cf-4422-9e47-d88c1205e43e/id-preview-3b5fb686--43c6db64-7970-48f4-adb8-e2712cbcbd22.lovable.app-1780738873163.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8898ae25-82cf-4422-9e47-d88c1205e43e/id-preview-3b5fb686--43c6db64-7970-48f4-adb8-e2712cbcbd22.lovable.app-1780738873163.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SOFURA Educational Trust — Inspiring Young Minds Since 1982" },
+      { name: "twitter:description", content: "SOFURA: Assam's beloved children's magazine and statewide Talent Discovery & Scholarship Exam since 1982." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/01db2c04-150c-43aa-90c0-980b0f786d2d/id-preview-f255b797--4696f15d-15b3-49b9-8b0c-817150fe7948.lovable.app-1783690316560.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/01db2c04-150c-43aa-90c0-980b0f786d2d/id-preview-f255b797--4696f15d-15b3-49b9-8b0c-817150fe7948.lovable.app-1783690316560.png" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@400;500;600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
@@ -121,9 +123,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteLayout>
-        <Outlet />
-      </SiteLayout>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
     </QueryClientProvider>
   );
 }
