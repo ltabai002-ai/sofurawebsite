@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, ArrowRight, Trophy, BookOpen, Brain, Calculator, FlaskConical, Globe, Award, Heart, Rocket, Star, CheckCircle, ChevronDown, ExternalLink } from "lucide-react";
+import { Sparkles, ArrowRight, Trophy, BookOpen, Brain, Calculator, FlaskConical, Globe, Award, Heart, Rocket, Star, CheckCircle, ChevronDown, ExternalLink, Pen, Landmark, ClipboardCheck } from "lucide-react";
 import { useState } from "react";
 import { useLang } from "@/components/LanguageContext";
 import heroImg from "@/assets/Scholarshipwinners/prizedisimg.webp";
@@ -46,14 +46,12 @@ function Doodles({ count = 6, items, className = "" }: { count?: number; items?:
 
 const FAQ_DATA = [
   { q: "Who can apply?", en: "Students from Classes 2 to 9 studying in recognized schools across Assam are eligible. Both Assamese and English medium students can apply.", as: "অসমৰ স্বীকৃত বিদ্যালয়ত দ্বিতীয়ৰ পৰা নৱম শ্ৰেণীৰ শিক্ষাৰ্থীয়ে আবেদন কৰিব পাৰে। অসমীয়া আৰু ইংৰাজী দুয়োটা মাধ্যমৰ শিক্ষাৰ্থীয়ে অংশগ্ৰহণ কৰিব পাৰে।" },
-  { q: "What subjects are included?", en: "The examination covers Mathematics, Science, General Knowledge, and Mental Ability. Questions are designed to test conceptual understanding and analytical thinking.", as: "পৰীক্ষাত গণিত, বিজ্ঞান, সাধাৰণ জ্ঞান আৰু মানসিক যোগ্যতা অন্তৰ্ভুক্ত। প্ৰশ্নসমূহ ধাৰণাগত বুজাবুজি আৰু বিশ্লেষণাত্মক চিন্তা পৰীক্ষা কৰিবলৈ ডিজাইন কৰা হৈছে।" },
-  { q: "How are scholarships awarded?", en: "Scholarships are awarded based on examination performance. Top-performing students receive scholarships ranging from ₹300 to ₹16,000 along with merit certificates.", as: "পৰীক্ষাৰ ফলাফলৰ ভিত্তিত বৃত্তি প্ৰদান কৰা হয়। শীৰ্ষ স্থানীয় শিক্ষাৰ্থীসকলে ₹৫০০ৰ পৰা ₹২০,০০০ লৈকে বৃত্তি আৰু মেৰিট প্ৰমাণপত্ৰ লাভ কৰে।" },
+  { q: "What subjects are included?", en: "The examination covers Mathematics, Science & Computer Science, English, General Knowledge, Social Sciences, and Mental Ability. Questions are designed to test conceptual understanding and analytical thinking.", as: "পৰীক্ষাত গণিত, বিজ্ঞান আৰু কম্পিউটাৰ বিজ্ঞান, ইংৰাজী, সাধাৰণ জ্ঞান, সমাজ বিজ্ঞান আৰু মানসিক যোগ্যতা অন্তৰ্ভুক্ত। প্ৰশ্নসমূহ ধাৰণাগত বুজাবুজি আৰু বিশ্লেষণাত্মক চিন্তা পৰীক্ষা কৰিবলৈ ডিজাইন কৰা হৈছে।" },
+  { q: "How are scholarships awarded?", en: "Scholarships are awarded based on examination performance. Top-performing students receive scholarships ranging from ₹300 to ₹16,000 along with merit certificates.", as: "পৰীক্ষাৰ ফলাফলৰ ভিত্তিত বৃত্তি প্ৰদান কৰা হয়। শীৰ্ষ স্থানীয় শিক্ষাৰ্থীসকলে ₹৩০০ৰ পৰা ₹১৬,০০০ লৈকে বৃত্তি আৰু মেৰিট প্ৰমাণপত্ৰ লাভ কৰে।" },
   { q: "When will results be announced?", en: "Results are typically announced within 3–4 months after the examination. Notifications are published on this page and shared with participating schools.", as: "পৰীক্ষাৰ ৩–৪ মাহৰ ভিতৰত ফলাফল ঘোষণা কৰা হয়। এই পৃষ্ঠাত আৰু অংশগ্ৰহণকাৰী বিদ্যালয়সমূহত জাননী প্ৰকাশ কৰা হয়।" },
   { q: "How can I register?", en: "Registration is available online through this page. Students can also register through their respective schools. The registration form requires basic student details, class, and school information.", as: "এই পৃষ্ঠাৰ জৰিয়তে অনলাইন পঞ্জীয়ন উপলব্ধ। শিক্ষাৰ্থীয়ে নিজ নিজ বিদ্যালয়ৰ জৰিয়তেও পঞ্জীয়ন কৰিব পাৰে।" },
   { q: "Is the examination available for both Assamese and English medium students?", en: "Yes, the examination is conducted in both Assamese and English medium to ensure all students from across Assam can participate comfortably.", as: "হয়, পৰীক্ষা অসমীয়া আৰু ইংৰাজী দুয়োটা মাধ্যমত পৰিচালিত হয় যাতে অসমৰ সকলো শিক্ষাৰ্থীয়ে সুবিধামতে অংশগ্ৰহণ কৰিব পাৰে।" },
 ];
-
-const CLASSES = ["2", "3", "4", "5", "6", "7", "8", "9"];
 
 function ExamPage() {
   const { t } = useLang();
@@ -83,7 +81,7 @@ function ExamPage() {
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-600 font-body">
                 {t(
                   "Join thousands of students across Assam in the Sofura Talent Discovery & Scholarship Examination. Showcase your talent, earn statewide recognition, and compete for scholarships worth up to ₹16,000 while building confidence for future academic success.",
-                  "অসমজুৰি হাজাৰ হাজাৰ শিক্ষাৰ্থীৰ সৈতে সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষাত যোগদান কৰক। নিজৰ প্ৰতিভা প্ৰদৰ্শন কৰক, ৰাজ্যিক স্বীকৃতি লাভ কৰক, আৰু ভৱিষ্যতৰ শৈক্ষিক সফলতাৰ বাবে আত্মবিশ্বাস গঢ়ি তোলাৰ লগতে ₹৫,০০০ লৈকে বৃত্তিৰ বাবে প্ৰতিদ্বন্দ্বিতা কৰক।"
+                  "অসমজুৰি হাজাৰ হাজাৰ শিক্ষাৰ্থীৰ সৈতে সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষাত যোগদান কৰক। নিজৰ প্ৰতিভা প্ৰদৰ্শন কৰক, ৰাজ্যিক স্বীকৃতি লাভ কৰক, আৰু ভৱিষ্যতৰ শৈক্ষিক সফলতাৰ বাবে আত্মবিশ্বাস গঢ়ি তোলাৰ লগতে ₹১৬,০০০ লৈকে বৃত্তিৰ বাবে প্ৰতিদ্বন্দ্বিতা কৰক।"
                 )}
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
@@ -104,9 +102,9 @@ function ExamPage() {
                 <a href="https://forms.gle/FzyNUBfXyvaZJYHJ7" target="_blank" rel="noopener noreferrer" className="btn-bounce inline-flex items-center gap-2 rounded-full bg-[#FF6B6B] px-8 py-4 font-play text-lg font-bold text-white shadow-coral transition hover:bg-[#ff5252]">
                   <Trophy className="h-5 w-5" /> {t("Apply Now", "এতিয়াই আবেদন কৰক")} <ExternalLink className="h-4 w-4" />
                 </a>
-                <a href="#" className="btn-bounce inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-8 py-4 font-play text-lg font-bold text-[#1A2A5E] transition hover:border-[#FF9F45] hover:bg-[#FFF8E7]">
-                  {t("Download Brochure", "ব্ৰচাৰ ডাউনলোড")}
-                </a>
+                <Link to="/prize" className="btn-bounce inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-8 py-4 font-play text-lg font-bold text-[#1A2A5E] transition hover:border-[#FF9F45] hover:bg-[#FFF8E7]">
+                  🏆 {t("View Prize Details", "পুৰস্কাৰৰ ধন চাওক")}
+                </Link>
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 rounded-full bg-[#FFD93D]/15 px-4 py-2">
@@ -319,29 +317,39 @@ function ExamPage() {
       {/* SECTION 5 — WHO CAN PARTICIPATE */}
       <section className="relative overflow-hidden bg-[#FFF8E7]">
         <Doodles count={6} items={["👦", "👧", "🧑", "🌟", "📚", "✏️"]} />
-        <div className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+        <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
           <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#FF9F45]/15 px-5 py-1.5 font-play text-xs font-bold uppercase tracking-wider text-[#FF9F45]">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#FF9F45]/15 px-4 py-1 font-play text-xs font-bold uppercase tracking-wider text-[#FF9F45]">
               <Star className="h-4 w-4" /> {t("Eligibility", "যোগ্যতা")}
             </span>
-            <h2 className="font-play mt-4 text-4xl font-bold text-[#1A2A5E] md:text-5xl">
+            <h2 className="font-play mt-2 text-2xl font-bold text-[#1A2A5E] md:text-3xl">
               {t("Open To Students Across Assam", "অসমৰ সকলো শিক্ষাৰ্থীৰ বাবে মুকলি")}
             </h2>
           </div>
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {CLASSES.map((cls) => (
-              <div key={cls} className="card-tilt rounded-2xl bg-white border-2 border-[#FFD93D]/20 p-5 text-center shadow-sm">
-                <div className="font-play text-3xl font-bold text-[#FF6B6B]">{cls}</div>
-                <div className="font-play text-sm font-bold text-[#1A2A5E]">{t(`Class ${cls}`, `শ্ৰেণী ${cls}`)}</div>
+          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              { group: "A", groupAs: "ক", classes: "II – III", emoji: "🧒", color: "border-[#FFD93D]/40 bg-[#FFD93D]/10", textColor: "text-[#FF9F45]", desc: t("Classes 2 & 3", "২ আৰু ৩ শ্ৰেণী") },
+              { group: "B", groupAs: "খ", classes: "IV – V", emoji: "👧", color: "border-[#4ECDC4]/40 bg-[#4ECDC4]/10", textColor: "text-[#4ECDC4]", desc: t("Classes 4 & 5", "৪ আৰু ৫ শ্ৰেণী") },
+              { group: "C", groupAs: "গ", classes: "VI – VII", emoji: "🧑", color: "border-[#FF6B6B]/40 bg-[#FF6B6B]/10", textColor: "text-[#FF6B6B]", desc: t("Classes 6 & 7", "৬ আৰু ৭ শ্ৰেণী") },
+              { group: "D", groupAs: "ঘ", classes: "VIII – IX", emoji: "🌟", color: "border-[#A855F7]/40 bg-[#A855F7]/10", textColor: "text-[#A855F7]", desc: t("Classes 8 & 9", "৮ আৰু ৯ শ্ৰেণী") },
+            ].map((g) => (
+              <div key={g.group} className={`rounded-2xl border-2 ${g.color} bg-white p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md`}>
+                <span className="text-3xl">{g.emoji}</span>
+                <div className="mt-2">
+                  <span className={`font-play text-lg font-bold ${g.textColor}`}>{t("Group", "গোট")} {g.group} ({g.groupAs})</span>
+                </div>
+                <div className="mt-1 font-play text-sm font-bold text-[#1A2A5E]">{g.classes}</div>
+                <div className="mt-1 text-xs text-gray-500">{g.desc}</div>
               </div>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <div className="flex items-center gap-2 rounded-full bg-[#FFD93D]/20 px-5 py-2">
-              <span className="font-play text-sm font-bold text-[#1A2A5E]">📖 {t("Assamese Medium", "অসমীয়া মাধ্যম")}</span>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <span className="font-play text-xs font-bold text-[#1A2A5E]/60 uppercase tracking-wider">{t("Available In", "উপলব্ধ")}:</span>
+            <div className="flex items-center gap-1.5 rounded-full bg-[#FFD93D]/20 px-4 py-1.5">
+              <span className="font-play text-xs font-bold text-[#1A2A5E]">📖 {t("Assamese", "অসমীয়া")}</span>
             </div>
-            <div className="flex items-center gap-2 rounded-full bg-[#4ECDC4]/20 px-5 py-2">
-              <span className="font-play text-sm font-bold text-[#1A2A5E]">📖 {t("English Medium", "ইংৰাজী মাধ্যম")}</span>
+            <div className="flex items-center gap-1.5 rounded-full bg-[#4ECDC4]/20 px-4 py-1.5">
+              <span className="font-play text-xs font-bold text-[#1A2A5E]">📖 {t("English", "ইংৰাজী")}</span>
             </div>
           </div>
         </div>
@@ -361,15 +369,17 @@ function ExamPage() {
               <BookOpen className="h-4 w-4" /> {t("Subjects", "বিষয়সমূহ")}
             </span>
             <h2 className="font-play mt-4 text-4xl font-bold text-[#1A2A5E] md:text-5xl">
-              {t("Four Worlds To Explore", "চাৰিটা জগত অন্বেষণ কৰক")}
+              {t("Worlds To Explore", "অন্বেষণ কৰিবলৈ জগত")}
             </h2>
           </div>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: <Calculator className="h-8 w-8" />, title: t("Mathematics", "গণিত"), desc: t("Numbers, patterns and logical thinking.", "সংখ্যা, নক্সা আৰু যুক্তিসংগত চিন্তা।"), color: "from-blue-100 to-blue-50", iconBg: "bg-blue-400", iconColor: "text-white" },
-              { icon: <FlaskConical className="h-8 w-8" />, title: t("Science", "বিজ্ঞান"), desc: t("Experiments, nature and discovery.", "পৰীক্ষা, প্ৰকৃতি আৰু আৱিষ্কাৰ।"), color: "from-emerald-100 to-emerald-50", iconBg: "bg-emerald-400", iconColor: "text-white" },
+              { icon: <FlaskConical className="h-8 w-8" />, title: t("Science & Computer Science", "বিজ্ঞান আৰু কম্পিউটাৰ বিজ্ঞান"), desc: t("Experiments, nature, computing and discovery.", "পৰীক্ষা, প্ৰকৃতি, কম্পিউটিং আৰু আৱিষ্কাৰ।"), color: "from-emerald-100 to-emerald-50", iconBg: "bg-emerald-400", iconColor: "text-white" },
               { icon: <Globe className="h-8 w-8" />, title: t("General Knowledge", "সাধাৰণ জ্ঞান"), desc: t("Understanding the world around us.", "আমাৰ চাৰিওকাষৰ পৃথিৱী বুজা।"), color: "from-amber-100 to-amber-50", iconBg: "bg-amber-400", iconColor: "text-white" },
               { icon: <Brain className="h-8 w-8" />, title: t("Mental Ability", "মানসিক যোগ্যতা"), desc: t("Reasoning, logic and problem solving.", "যুক্তি, বিচাৰ আৰু সমস্যা সমাধান।"), color: "from-rose-100 to-rose-50", iconBg: "bg-rose-400", iconColor: "text-white" },
+              { icon: <Pen className="h-8 w-8" />, title: t("English", "ইংৰাজী"), desc: t("Language, comprehension and expression.", "ভাষা, বুজাবুজি আৰু প্ৰকাশ।"), color: "from-indigo-100 to-indigo-50", iconBg: "bg-indigo-400", iconColor: "text-white" },
+              { icon: <Landmark className="h-8 w-8" />, title: t("Social Sciences", "সমাজ বিজ্ঞান"), desc: t("History, geography and civic awareness.", "ইতিহাস, ভূগোল আৰু নাগৰিক সচেতনতা।"), color: "from-cyan-100 to-cyan-50", iconBg: "bg-cyan-400", iconColor: "text-white" },
             ].map((card, i) => (
               <div key={i} className={`card-tilt rounded-[2rem] bg-gradient-to-br ${card.color} p-6 shadow-md md:p-8`}>
                 <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${card.iconBg} ${card.iconColor} shadow-sm mb-5`}>
@@ -447,14 +457,58 @@ function ExamPage() {
               </p>
               <p className="mt-4 font-body text-lg leading-relaxed text-white/70">
                 {t(
-                  "Students are assessed in Mathematics, Science, General Knowledge, and Mental Ability, helping them develop analytical thinking, problem-solving skills, and confidence for future competitive examinations.",
-                  "গণিত, বিজ্ঞান, সাধাৰণ জ্ঞান আৰু মানসিক যোগ্যতাৰ ক্ষেত্ৰত শিক্ষাৰ্থীসকলৰ মূল্যায়ন কৰা হয়, যাৰ ফলত তেওঁলোকৰ বিশ্লেষণাত্মক চিন্তা, সমস্যা সমাধানৰ দক্ষতা আৰু ভৱিষ্যতৰ প্ৰতিযোগিতামূলক পৰীক্ষাৰ বাবে আত্মবিশ্বাস বিকশিত হয়।"
+                  "Students are assessed in Mathematics, Science & Computer Science, English, General Knowledge, Social Sciences, and Mental Ability — helping them develop analytical thinking, problem-solving skills, and confidence for future competitive examinations.",
+                  "গণিত, বিজ্ঞান আৰু কম্পিউটাৰ বিজ্ঞান, ইংৰাজী, সাধাৰণ জ্ঞান, সমাজ বিজ্ঞান আৰু মানসিক যোগ্যতাৰ ক্ষেত্ৰত শিক্ষাৰ্থীসকলৰ মূল্যায়ন কৰা হয় — যাৰ ফলত তেওঁলোকৰ বিশ্লেষণাত্মক চিন্তা, সমস্যা সমাধানৰ দক্ষতা আৰু ভৱিষ্যতৰ প্ৰতিযোগিতামূলক পৰীক্ষাৰ বাবে আত্মবিশ্বাস বিকশিত হয়।"
                 )}
               </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <ClipboardCheck className="h-3.5 w-3.5 text-[#4ECDC4]" />
+                  <span className="font-play text-xs font-bold text-white">{t("150 Questions", "১৫০ প্ৰশ্ন")}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <span className="font-play text-xs text-[#FFD93D]">✍️</span>
+                  <span className="font-play text-xs font-bold text-white">{t("MCQ Format", "MCQ বিন্যাস")}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <span className="font-play text-xs text-[#FF9F45]">📄</span>
+                  <span className="font-play text-xs font-bold text-white">{t("OMR Answer Sheet", "OMR উত্তৰ পত্ৰ")}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <span className="font-play text-xs text-[#FF6B6B]">🖊️</span>
+                  <span className="font-play text-xs font-bold text-white">{t("Pen Only", "কেৱল কলম")}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <span className="font-play text-xs text-[#4ECDC4]">🔄</span>
+                  <span className="font-play text-xs font-bold text-white">{t("Annual — Multiple Attempts Allowed", "বাৰ্ষিক — একাধিকবাৰ বহিব পাৰি")}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1.5">
+                  <span className="font-play text-xs text-[#A855F7]">📘</span>
+                  <span className="font-play text-xs font-bold text-white">{t("Study Material Available", "অধ্যয়ন সামগ্ৰী উপলব্ধ")}</span>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="flex h-64 w-64 items-center justify-center rounded-full bg-[#FFD93D]/10 border-4 border-[#FFD93D]/30">
-                <span className="text-8xl">📚</span>
+            <div>
+              <div className="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-5 md:p-6">
+                <h3 className="font-play text-base font-bold text-[#FFD93D] mb-4 text-center">{t("Quick Facts", "সংক্ষিপ্ত তথ্য")}</h3>
+                <div className="space-y-2.5">
+                  {[
+                    { label: t("Exam Name", "পৰীক্ষাৰ নাম"), value: t("SOFURA Talent Discovery Examination", "সঁফুৰা প্ৰতিভা সন্ধান পৰীক্ষা") },
+                    { label: t("Conducted By", "পৰিচালনা কৰে"), value: t("SOFURA Educational Trust", "সঁফুৰা শিক্ষা ন্যাস") },
+                    { label: t("Classes Eligible", "যোগ্য শ্ৰেণী"), value: "II – IX" },
+                    { label: t("Total Questions", "মুঠ প্ৰশ্ন"), value: "150" },
+                    { label: t("Exam Type", "পৰীক্ষাৰ ধৰণ"), value: t("Objective (MCQ)", "বস্তুনিষ্ঠ (MCQ)") },
+                    { label: t("Answer Mode", "উত্তৰ দিয়াৰ ধৰণ"), value: t("OMR Sheet", "OMR পত্ৰ") },
+                    { label: t("Scholarship Range", "বৃত্তিৰ পৰিসৰ"), value: "₹300 – ₹16,000" },
+                    { label: t("Certificate", "প্ৰমাণপত্ৰ"), value: t("60% Aggregate", "৬০% গড় নম্বৰ") },
+                    { label: t("Frequency", "পৰ্যায়"), value: t("Annual", "বাৰ্ষিক") },
+                  ].map((row, i) => (
+                    <div key={i} className="flex items-center justify-between gap-4 border-b border-white/10 pb-2 last:border-0 last:pb-0">
+                      <span className="font-play text-xs font-bold text-white/60">{row.label}</span>
+                      <span className="font-play text-xs font-bold text-white text-right">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

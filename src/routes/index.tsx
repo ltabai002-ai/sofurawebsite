@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, ArrowRight, Quote, Stars, BookOpen, Trophy, Award, Rocket, Heart, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sparkles, ArrowRight, Quote, Stars, BookOpen, Trophy, Award, Rocket, Heart, ExternalLink, Calculator, FlaskConical, Globe, Brain, Pen, Landmark } from "lucide-react";
 import herosection4Img from "@/assets/herosection4.webp";
 import mobileherobannerImg from "@/assets/mobileherobanner.webp";
 import founderImg from "@/assets/founder.webp";
+import sofurawhitelogoImg from "@/assets/sofurawhitelogo.webp";
 import magazineImg from "@/assets/magazine.webp";
 import prizedisimg from "@/assets/Scholarshipwinners/prizedisimg.webp";
 import achievementImg from "@/assets/achievement.webp";
@@ -16,6 +18,9 @@ import vid6 from "@/assets/dnjanksd/2.mp4";
 import vid7 from "@/assets/dnjanksd/3.mp4";
 import vid8 from "@/assets/dnjanksd/4.mp4";
 import { useLang } from "@/components/LanguageContext";
+
+const examImages = import.meta.glob<string>('@/assets/examimgassam/*.webp', { eager: true, query: '?url', import: 'default' });
+const EXAM_PHOTOS = Object.values(examImages);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,6 +96,88 @@ function Home() {
         </div>
       </section>
 
+      {/* SECTION D1a — ABOUT THE SCHOLARSHIP EXAMINATION */}
+      <section className="relative overflow-hidden bg-[#FFF8E7]">
+        <Doodles count={6} items={["🏆", "📚", "⭐", "🎓", "📜", "💛"]} />
+        <div className="mx-auto max-w-7xl px-4 py-24 md:px-6 md:py-28">
+          <div className="text-center">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/20 px-5 py-1.5 font-play text-xs font-bold uppercase tracking-wider text-[#FF9F45]">
+              <Trophy className="h-4 w-4" /> {t("Scholarship Examination", "বৃত্তি পৰীক্ষা")}
+            </span>
+          <h2 className="font-play mt-4 text-5xl font-bold text-[#1A2A5E] md:text-6xl lg:text-7xl">
+            {t("Discover Talent. Earn Recognition. Build Your Future.", "প্ৰতিভা আৱিষ্কাৰ কৰক। স্বীকৃতি লাভ কৰক। ভৱিষ্যত গঢ়ক।")}
+            </h2>
+            <p className="mx-auto mt-3 max-w-3xl font-body text-lg text-gray-600">
+              {t("The Sofura Talent Discovery & Scholarship Examination has been helping identify and nurture talented students across Assam since 2004.", "সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষাই ২০০৪ চনৰে পৰা অসমৰ প্ৰতিভাৱান শিক্ষাৰ্থীক চিনাক্ত আৰু প্ৰশিক্ষণ দিয়াত সহায় কৰি আহিছে।")}
+            </p>
+          </div>
+          <div className="mt-14 grid items-center gap-12 md:grid-cols-2">
+            {/* LEFT — Content */}
+            <div>
+              <h3 className="font-play text-3xl font-bold text-[#1A2A5E]">
+                {t("Sofura Talent Discovery & Scholarship Examination", "সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষা")}
+              </h3>
+              <div className="mt-5 space-y-4 font-body text-gray-600 leading-relaxed">
+                <p>
+                  {t(
+                    "The Sofura Talent Discovery & Scholarship Examination, organized by the SOFURA Educational Trust, is a statewide educational initiative dedicated to identifying and nurturing academic talent among students across Assam.",
+                    "সঁফুৰা শিক্ষা ন্যাসৰ দ্বাৰা আয়োজিত সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষা, অসমজুৰি শিক্ষাৰ্থীসকলৰ মাজত শৈক্ষিক প্ৰতিভা চিনাক্ত আৰু প্ৰশিক্ষণ দিয়াৰ বাবে উৎসৰ্গিত এটি ৰাজ্যিক শিক্ষামূলক উদ্যোগ।"
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "Conducted annually for students from Classes 2 to 9, the examination encourages healthy competition, builds confidence, and rewards excellence through scholarships, certificates, and statewide recognition.",
+                    "শ্ৰেণী ২ৰ পৰা ৯ লৈকে শিক্ষাৰ্থীসকলৰ বাবে বাৰ্ষিকভাৱে পৰিচালিত এই পৰীক্ষাই সুস্থ প্ৰতিযোগিতাক উৎসাহিত কৰে, আত্মবিশ্বাস গঢ়ি তোলে, আৰু বৃত্তি, প্ৰমাণপত্ৰ আৰু ৰাজ্যিক স্বীকৃতিৰ জৰিয়তে উৎকৰ্ষতাক পুৰস্কৃত কৰে।"
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "The examination evaluates students in Mathematics, Science & Computer Science, English, General Knowledge, Social Sciences, and Mental Ability while helping them prepare for future competitive examinations and academic success.",
+                    "পৰীক্ষাই শিক্ষাৰ্থীসকলক গণিত, বিজ্ঞান আৰু কম্পিউটাৰ বিজ্ঞান, ইংৰাজী, সাধাৰণ জ্ঞান, সমাজ বিজ্ঞান আৰু মানসিক যোগ্যতাৰ মূল্যায়ন কৰে আৰু ভৱিষ্যতৰ প্ৰতিযোগিতামূলক পৰীক্ষা আৰু শৈক্ষিক সফলতাৰ বাবে প্ৰস্তুত কৰাত সহায় কৰে।"
+                  )}
+                </p>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#FF9F45]">📅 {t("Since 2004", "২০০৪ চনৰে পৰা")}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#4ECDC4]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#4ECDC4]">🎓 {t("Classes 2–9", "শ্ৰেণী ২–৯")}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B6B]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#FF6B6B]">🌍 {t("Across Assam", "অসমজুৰি")}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#FF9F45]">🏆 {t("Scholarships Available", "বৃত্তি উপলব্ধ")}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#4ECDC4]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#4ECDC4]">📜 {t("Merit Certificates", "মেৰিট প্ৰমাণপত্ৰ")}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B6B]/15 px-4 py-2">
+                  <span className="font-play text-sm font-bold text-[#FF6B6B]">⭐ {t("Statewide Recognition", "ৰাজ্যিক স্বীকৃতি")}</span>
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href="https://forms.gle/FzyNUBfXyvaZJYHJ7" target="_blank" rel="noopener noreferrer" className="btn-bounce inline-flex items-center gap-2 rounded-full bg-[#FF6B6B] px-7 py-3.5 font-play text-base font-bold text-white shadow-coral transition hover:bg-[#ff5252]">
+                  📝 {t("Register for 2026", "২০২৬ৰ বাবে পঞ্জীয়ন")} <ExternalLink className="h-4 w-4" />
+                </a>
+                <Link to="/exam" className="btn-bounce inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-7 py-3.5 font-play text-base font-bold text-[#1A2A5E] transition hover:border-[#FF9F45] hover:bg-[#FFF8E7]">
+                  {t("View Scholarship Details", "বৃত্তিৰ বিবৰণ চাওক")}
+                </Link>
+              </div>
+            </div>
+            {/* RIGHT — Achievement Image */}
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#FFD93D]/40 via-[#FF6B6B]/20 to-[#4ECDC4]/20 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] shadow-warm border-2 border-[#FFD93D]/30">
+                <img src={achievementImg} alt="Achievement" className="w-full h-auto object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#EEF7FF]" style={{ maskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,35 C80,35 100,5 200,5 C300,5 320,35 400,35 C480,35 500,5 600,5 C700,5 720,35 800,35 C880,35 900,5 1000,5 C1100,5 1120,35 1200,35 L1200,40 L0,40 Z' fill='white'/%3E%3C/svg%3E\")", maskSize: "100% 100%", WebkitMaskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,35 C80,35 100,5 200,5 C300,5 320,35 400,35 C480,35 500,5 600,5 C700,5 720,35 800,35 C880,35 900,5 1000,5 C1100,5 1120,35 1200,35 L1200,40 L0,40 Z' fill='white'/%3E%3C/svg%3E\")", WebkitMaskSize: "100% 100%" }} />
+      </section>
+
       {/* SECTION A — Where Curious Minds Come to Play & Learn! */}
       <section className="relative overflow-hidden bg-[#FFF8E7]">
         <Doodles count={8} />
@@ -102,27 +189,20 @@ function Home() {
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1A2A5E] shadow-sm">
-                🎯 {t("Sofura Talent Exam 2026", "২০২৬ চনৰ সঁফুৰা প্ৰতিভা সন্ধান")}
+                ✍️ {t("Write. Create. Inspire.", "লিখা। সৃষ্টি কৰা। অনুপ্ৰাণিত কৰা।")}
               </span>
               <h1 className="font-play mt-5 text-5xl font-bold leading-[1.1] text-[#1A2A5E] md:text-6xl lg:text-7xl">
-                {t("Discover Your Talent.", "তোমাৰ প্ৰতিভা আৱিষ্কাৰ কৰা।")}
-                <br />
-                <span className="text-[#FF6B6B]">{t("Win Big.", "বিজয়ী হোৱা।")}</span>
-                <br />
-                {t("Shine Bright!", "উজ্জ্বল হৈ পৰা!")}
+                {t("Publish Your Work In Sofura Magazine", "সঁফুৰা আলোচনীত আপোনাৰ কাম প্ৰকাশ কৰক")}
               </h1>
-              <div className="mt-4 inline-block -rotate-3 rounded-xl border-2 border-[#FFD93D] bg-[#FFD93D]/20 px-4 py-1.5">
-                <span className="font-play text-sm font-bold text-[#FF9F45]">✦ {t("Exam 2026", "২০২৬ পৰীক্ষা")} ✦</span>
-              </div>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-600 font-body">
                 {t(
-                  "Assam's most loved scholarship exam for school students. Test your knowledge, unlock exciting rewards, and join a legacy of brilliant young minds making their mark.",
-                  "অসমৰ স্কুলীয়া শিক্ষাৰ্থীসকলৰ আটাইতকৈ প্ৰিয় বৃত্তি পৰীক্ষা। তোমাৰ জ্ঞান পৰীক্ষা কৰা, ৰোমাঞ্চকৰ পুৰস্কাৰ লাভ কৰা, আৰু উজ্জ্বল মনৰ ঐতিহ্যত যোগ দিয়া।"
+                  "Share your stories, poems, drawings, and articles with readers across Assam. Get published in Sofura — Assam's beloved monthly children's magazine since 1982.",
+                  "অসমজুৰি পঢ়ুৱৈৰ সৈতে আপোনাৰ কাহিনী, কবিতা, চিত্ৰ আৰু প্ৰবন্ধ শ্বেয়াৰ কৰক। ১৯৮২ চনৰে পৰা অসমৰ প্ৰিয় মাহিলী শিশু আলোচনী সঁফুৰাত প্ৰকাশিত হওক।"
                 )}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <a href="https://forms.gle/FzyNUBfXyvaZJYHJ7" target="_blank" rel="noopener noreferrer" className="btn-bounce inline-flex items-center gap-2 rounded-full bg-[#FF6B6B] px-8 py-4 font-play text-lg font-bold text-white shadow-coral transition hover:bg-[#ff5252]">
-                  📝 {t("Register for 2026", "২০২৬ৰ বাবে পঞ্জীয়ন")} <ExternalLink className="h-4 w-4" />
+                <a href="https://forms.gle/EuSqd3TMgieiuXMXA" target="_blank" rel="noopener noreferrer" className="btn-bounce inline-flex items-center gap-2 rounded-full bg-[#FF6B6B] px-8 py-4 font-play text-lg font-bold text-white shadow-coral transition hover:bg-[#ff5252]">
+                  ✏️ {t("Submit Your Work", "আপোনাৰ কাম দাখিল কৰক")} <ExternalLink className="h-4 w-4" />
                 </a>
                 <a href="https://drive.google.com/file/d/1fq-tpcikfvFRlJyno7ojc1fYarZfIoSv/view" target="_blank" rel="noopener noreferrer" className="btn-bounce inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-8 py-4 font-play text-lg font-bold text-[#1A2A5E] transition hover:border-[#FF9F45] hover:bg-[#FFF8E7]">
                   🏆 {t("Check 2024 Results", "২০২৪ ফলাফল চাওক")} <ExternalLink className="h-4 w-4" />
@@ -154,7 +234,7 @@ function Home() {
         />
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-14 md:flex-row md:px-6 md:py-16">
           <div className="relative shrink-0">
-            <img src={founderImg} alt="Dr. Bhabendranath Saikia" width={100} height={100} loading="lazy" className="h-24 w-24 rounded-full border-4 border-[#FFD93D] object-cover shadow-lg ring-2 ring-[#FFD93D]/30" />
+            <img src={sofurawhitelogoImg} alt="Sofura White Logo" width={120} height={120} loading="lazy" className="h-28 w-28 rounded-full border-4 border-[#FFD93D] object-cover shadow-lg ring-2 ring-[#FFD93D]/30" />
             <div className="absolute -bottom-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFD93D] shadow-md">
               <Quote className="h-4 w-4 text-[#1A2A5E]" />
             </div>
@@ -300,88 +380,6 @@ function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#EEF7FF]" style={{ maskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48'%3E%3Cpath d='M0,0 C200,40 400,0 600,30 C800,48 1000,0 1200,20 L1200,48 L0,48 Z' fill='white'/%3E%3C/svg%3E\")", maskSize: "100% 100%", WebkitMaskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48'%3E%3Cpath d='M0,0 C200,40 400,0 600,30 C800,48 1000,0 1200,20 L1200,48 L0,48 Z' fill='white'/%3E%3C/svg%3E\")", WebkitMaskSize: "100% 100%" }} />
       </section>
 
-      {/* SECTION D1a — ABOUT THE SCHOLARSHIP EXAMINATION */}
-      <section className="relative overflow-hidden bg-[#FFF8E7]">
-        <Doodles count={6} items={["🏆", "📚", "⭐", "🎓", "📜", "💛"]} />
-        <div className="mx-auto max-w-7xl px-4 py-24 md:px-6 md:py-28">
-          <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/20 px-5 py-1.5 font-play text-xs font-bold uppercase tracking-wider text-[#FF9F45]">
-              <Trophy className="h-4 w-4" /> {t("Scholarship Examination", "বৃত্তি পৰীক্ষা")}
-            </span>
-          <h2 className="font-play mt-4 text-5xl font-bold text-[#1A2A5E] md:text-6xl lg:text-7xl">
-            {t("Discover Talent. Earn Recognition. Build Your Future.", "প্ৰতিভা আৱিষ্কাৰ কৰক। স্বীকৃতি লাভ কৰক। ভৱিষ্যত গঢ়ক।")}
-            </h2>
-            <p className="mx-auto mt-3 max-w-3xl font-body text-lg text-gray-600">
-              {t("The Sofura Talent Discovery & Scholarship Examination has been helping identify and nurture talented students across Assam since 2004.", "সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষাই ২০০৪ চনৰে পৰা অসমৰ প্ৰতিভাৱান শিক্ষাৰ্থীক চিনাক্ত আৰু প্ৰশিক্ষণ দিয়াত সহায় কৰি আহিছে।")}
-            </p>
-          </div>
-          <div className="mt-14 grid items-center gap-12 md:grid-cols-2">
-            {/* LEFT — Content */}
-            <div>
-              <h3 className="font-play text-3xl font-bold text-[#1A2A5E]">
-                {t("Sofura Talent Discovery & Scholarship Examination", "সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষা")}
-              </h3>
-              <div className="mt-5 space-y-4 font-body text-gray-600 leading-relaxed">
-                <p>
-                  {t(
-                    "The Sofura Talent Discovery & Scholarship Examination, organized by the SOFURA Educational Trust, is a statewide educational initiative dedicated to identifying and nurturing academic talent among students across Assam.",
-                    "সঁফুৰা শিক্ষা ন্যাসৰ দ্বাৰা আয়োজিত সঁফুৰা প্ৰতিভা সন্ধান আৰু বৃত্তি পৰীক্ষা, অসমজুৰি শিক্ষাৰ্থীসকলৰ মাজত শৈক্ষিক প্ৰতিভা চিনাক্ত আৰু প্ৰশিক্ষণ দিয়াৰ বাবে উৎসৰ্গিত এটি ৰাজ্যিক শিক্ষামূলক উদ্যোগ।"
-                  )}
-                </p>
-                <p>
-                  {t(
-                    "Conducted annually for students from Classes 2 to 9, the examination encourages healthy competition, builds confidence, and rewards excellence through scholarships, certificates, and statewide recognition.",
-                    "শ্ৰেণী ২ৰ পৰা ৯ লৈকে শিক্ষাৰ্থীসকলৰ বাবে বাৰ্ষিকভাৱে পৰিচালিত এই পৰীক্ষাই সুস্থ প্ৰতিযোগিতাক উৎসাহিত কৰে, আত্মবিশ্বাস গঢ়ি তোলে, আৰু বৃত্তি, প্ৰমাণপত্ৰ আৰু ৰাজ্যিক স্বীকৃতিৰ জৰিয়তে উৎকৰ্ষতাক পুৰস্কৃত কৰে।"
-                  )}
-                </p>
-                <p>
-                  {t(
-                    "The examination evaluates students in Mathematics, Science, General Knowledge, and Mental Ability while helping them prepare for future competitive examinations and academic success.",
-                    "পৰীক্ষাই শিক্ষাৰ্থীসকলক গণিত, বিজ্ঞান, সাধাৰণ জ্ঞান আৰু মানসিক যোগ্যতাৰ মূল্যায়ন কৰে আৰু ভৱিষ্যতৰ প্ৰতিযোগিতামূলক পৰীক্ষা আৰু শৈক্ষিক সফলতাৰ বাবে প্ৰস্তুত কৰাত সহায় কৰে।"
-                  )}
-                </p>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#FF9F45]">📅 {t("Since 2004", "২০০৪ চনৰে পৰা")}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#4ECDC4]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#4ECDC4]">🎓 {t("Classes 2–9", "শ্ৰেণী ২–৯")}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B6B]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#FF6B6B]">🌍 {t("Across Assam", "অসমজুৰি")}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#FF9F45]">🏆 {t("Scholarships Available", "বৃত্তি উপলব্ধ")}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#4ECDC4]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#4ECDC4]">📜 {t("Merit Certificates", "মেৰিট প্ৰমাণপত্ৰ")}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B6B]/15 px-4 py-2">
-                  <span className="font-play text-sm font-bold text-[#FF6B6B]">⭐ {t("Statewide Recognition", "ৰাজ্যিক স্বীকৃতি")}</span>
-                </div>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link to="/exam" className="btn-bounce inline-flex items-center gap-2 rounded-full bg-[#FF6B6B] px-7 py-3.5 font-play text-base font-bold text-white shadow-coral transition hover:bg-[#ff5252]">
-                  <Trophy className="h-5 w-5" /> {t("Learn More", "আৰু জানক")}
-                </Link>
-                <Link to="/exam" className="btn-bounce inline-flex items-center gap-2 rounded-full border-2 border-[#FFD93D] bg-white px-7 py-3.5 font-play text-base font-bold text-[#1A2A5E] transition hover:border-[#FF9F45] hover:bg-[#FFF8E7]">
-                  {t("View Scholarship Details", "বৃত্তিৰ বিবৰণ চাওক")}
-                </Link>
-              </div>
-            </div>
-            {/* RIGHT — Achievement Image */}
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#FFD93D]/40 via-[#FF6B6B]/20 to-[#4ECDC4]/20 blur-2xl" />
-              <div className="relative overflow-hidden rounded-[2rem] shadow-warm border-2 border-[#FFD93D]/30">
-                <img src={achievementImg} alt="Achievement" className="w-full h-auto object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#EEF7FF]" style={{ maskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,35 C80,35 100,5 200,5 C300,5 320,35 400,35 C480,35 500,5 600,5 C700,5 720,35 800,35 C880,35 900,5 1000,5 C1100,5 1120,35 1200,35 L1200,40 L0,40 Z' fill='white'/%3E%3C/svg%3E\")", maskSize: "100% 100%", WebkitMaskImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,35 C80,35 100,5 200,5 C300,5 320,35 400,35 C480,35 500,5 600,5 C700,5 720,35 800,35 C880,35 900,5 1000,5 C1100,5 1120,35 1200,35 L1200,40 L0,40 Z' fill='white'/%3E%3C/svg%3E\")", WebkitMaskSize: "100% 100%" }} />
-      </section>
-
       {/* SECTION D2 — Four Worlds to Explore! */}
       <section className="relative overflow-hidden bg-[#EEF7FF]">
         <Doodles count={8} />
@@ -398,145 +396,32 @@ function Home() {
               {t("Subjects Covered In The Scholarship Examination", "বৃত্তি পৰীক্ষাত অন্তৰ্ভুক্ত বিষয়সমূহ")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl font-body text-lg text-gray-600">
-              {t("Students are assessed across four important areas that encourage knowledge, reasoning, curiosity, and academic excellence.", "চাৰিটা গুৰুত্বপূৰ্ণ ক্ষেত্ৰত শিক্ষাৰ্থীসকলৰ মূল্যায়ন কৰা হয় যিয়ে জ্ঞান, যুক্তি, কৌতূহল আৰু শৈক্ষিক উৎকৰ্ষতাক উৎসাহিত কৰে।")}
+              {t("Students are assessed across six important areas that encourage knowledge, reasoning, curiosity, and academic excellence.", "ছটা গুৰুত্বপূৰ্ণ ক্ষেত্ৰত শিক্ষাৰ্থীসকলৰ মূল্যায়ন কৰা হয় যিয়ে জ্ঞান, যুক্তি, কৌতূহল আৰু শৈক্ষিক উৎকৰ্ষতাক উৎসাহিত কৰে।")}
             </p>
           </div>
 
-          <div className="mt-14 grid gap-8 sm:grid-cols-2">
-            {/* Mathematics */}
-            <div className="card-tilt relative rounded-[2.5rem] bg-gradient-to-br from-blue-100 to-blue-50 p-6 shadow-md transition hover:shadow-lg md:p-8 min-h-[320px] flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <span className="rounded-full bg-blue-200/60 px-4 py-1.5 font-play text-xs font-bold text-blue-600">
-                  {t("Subject", "বিষয়")} 01
-                </span>
-              </div>
-              <div className="relative -mx-6 -mt-2 mb-5 h-36 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-300/30 to-blue-200/20 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-around flex-wrap opacity-30">
-                  <span className="text-2xl animate-float" style={{ animationDelay: "0s" }}>1</span>
-                  <span className="text-2xl animate-float" style={{ animationDelay: "0.3s" }}>2</span>
-                  <span className="text-2xl animate-float" style={{ animationDelay: "0.6s" }}>3</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "0.9s" }}>+</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "1.2s" }}>−</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "1.5s" }}>×</span>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: <Calculator className="h-8 w-8" />, title: t("Mathematics", "গণিত"), desc: t("Numbers, patterns and logical thinking.", "সংখ্যা, নক্সা আৰু যুক্তিসংগত চিন্তা।"), color: "from-blue-100 to-blue-50", iconBg: "bg-blue-400", iconColor: "text-white" },
+              { icon: <FlaskConical className="h-8 w-8" />, title: t("Science & Computer Science", "বিজ্ঞান আৰু কম্পিউটাৰ বিজ্ঞান"), desc: t("Experiments, nature, computing and discovery.", "পৰীক্ষা, প্ৰকৃতি, কম্পিউটিং আৰু আৱিষ্কাৰ।"), color: "from-emerald-100 to-emerald-50", iconBg: "bg-emerald-400", iconColor: "text-white" },
+              { icon: <Globe className="h-8 w-8" />, title: t("General Knowledge", "সাধাৰণ জ্ঞান"), desc: t("Understanding the world around us.", "আমাৰ চাৰিওকাষৰ পৃথিৱী বুজা।"), color: "from-amber-100 to-amber-50", iconBg: "bg-amber-400", iconColor: "text-white" },
+              { icon: <Brain className="h-8 w-8" />, title: t("Mental Ability", "মানসিক যোগ্যতা"), desc: t("Reasoning, logic and problem solving.", "যুক্তি, বিচাৰ আৰু সমস্যা সমাধান।"), color: "from-rose-100 to-rose-50", iconBg: "bg-rose-400", iconColor: "text-white" },
+              { icon: <Pen className="h-8 w-8" />, title: t("English", "ইংৰাজী"), desc: t("Language, comprehension and expression.", "ভাষা, বুজাবুজি আৰু প্ৰকাশ।"), color: "from-indigo-100 to-indigo-50", iconBg: "bg-indigo-400", iconColor: "text-white" },
+              { icon: <Landmark className="h-8 w-8" />, title: t("Social Sciences", "সমাজ বিজ্ঞান"), desc: t("History, geography and civic awareness.", "ইতিহাস, ভূগোল আৰু নাগৰিক সচেতনতা।"), color: "from-cyan-100 to-cyan-50", iconBg: "bg-cyan-400", iconColor: "text-white" },
+            ].map((card, i) => (
+              <div key={i} className={`card-tilt rounded-[2rem] bg-gradient-to-br ${card.color} p-6 shadow-md md:p-8`}>
+                <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${card.iconBg} ${card.iconColor} shadow-sm mb-5`}>
+                  {card.icon}
                 </div>
-                <div className="relative flex items-center gap-4">
-                  <span className="text-5xl">🧑‍🏫</span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-3xl">🧮</span>
-                    <span className="text-xl">📐</span>
-                  </div>
-                  <span className="text-3xl animate-float">🔢</span>
+                <h3 className="font-play text-xl font-bold text-[#1A2A5E]">{card.title}</h3>
+                <p className="mt-2 font-body text-sm text-gray-500">{card.desc}</p>
+                <div className="mt-4">
+                  <span className="inline-flex items-center gap-1 font-play text-sm font-bold text-gray-400 transition group-hover:gap-2">
+                    {t("Explore", "অন্বেষণ")} <span className="inline-block">→</span>
+                  </span>
                 </div>
               </div>
-              <h3 className="font-play text-2xl font-bold text-[#1A2A5E]">{t("Mathematics", "গণিত")}</h3>
-              <p className="mt-2 font-body text-gray-500">
-                {t("Numbers, puzzles, and magical patterns!", "সংখ্যা, ধাঁধা, আৰু যাদুকৰী নক্সা!")}
-              </p>
-              <div className="mt-auto pt-4">
-                <span className="btn-bounce inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 font-play text-sm font-bold text-white shadow-md transition hover:bg-blue-600">
-                  {t("Explore", "অন্বেষণ")} <span className="inline-block group-hover:animate-wiggle">→</span>
-                </span>
-              </div>
-            </div>
-
-            {/* Science */}
-            <div className="card-tilt relative rounded-[2.5rem] bg-gradient-to-br from-emerald-100 to-emerald-50 p-6 shadow-md transition hover:shadow-lg md:p-8 min-h-[320px] flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <span className="rounded-full bg-emerald-200/60 px-4 py-1.5 font-play text-xs font-bold text-emerald-600">
-                  {t("Subject", "বিষয়")} 02
-                </span>
-              </div>
-              <div className="relative -mx-6 -mt-2 mb-5 h-36 overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-300/30 to-emerald-200/20 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-around flex-wrap opacity-30">
-                  <span className="text-xl animate-float" style={{ animationDelay: "0s" }}>🔬</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "0.5s" }}>🧪</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "1s" }}>🌿</span>
-                </div>
-                <div className="relative flex items-center gap-4">
-                  <span className="text-5xl">🧑‍🔬</span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-3xl animate-float">🧪</span>
-                    <span className="text-xl">🔬</span>
-                  </div>
-                  <span className="text-3xl animate-float" style={{ animationDelay: "0.5s" }}>🌱</span>
-                </div>
-              </div>
-              <h3 className="font-play text-2xl font-bold text-[#1A2A5E]">{t("Science", "বিজ্ঞান")}</h3>
-              <p className="mt-2 font-body text-gray-500">
-                {t("Experiments, nature, and cool discoveries!", "পৰীক্ষা, প্ৰকৃতি, আৰু চমৎকাৰ আৱিষ্কাৰ!")}
-              </p>
-              <div className="mt-auto pt-4">
-                <span className="btn-bounce inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 font-play text-sm font-bold text-white shadow-md transition hover:bg-emerald-600">
-                  {t("Explore", "অন্বেষণ")} <span className="inline-block group-hover:animate-wiggle">→</span>
-                </span>
-              </div>
-            </div>
-
-            {/* General Knowledge */}
-            <div className="card-tilt relative rounded-[2.5rem] bg-gradient-to-br from-amber-100 to-amber-50 p-6 shadow-md transition hover:shadow-lg md:p-8 min-h-[320px] flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <span className="rounded-full bg-amber-200/60 px-4 py-1.5 font-play text-xs font-bold text-amber-600">
-                  {t("Subject", "বিষয়")} 03
-                </span>
-              </div>
-              <div className="relative -mx-6 -mt-2 mb-5 h-36 overflow-hidden rounded-2xl bg-gradient-to-br from-amber-300/30 to-amber-200/20 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-around flex-wrap opacity-30">
-                  <span className="text-xl animate-float" style={{ animationDelay: "0s" }}>🌍</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "0.7s" }}>🗺️</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "1.4s" }}>❓</span>
-                </div>
-                <div className="relative flex items-center gap-4">
-                  <span className="text-5xl">🧑‍🎓</span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-3xl animate-float">🌍</span>
-                    <span className="text-2xl">🔍</span>
-                  </div>
-                  <span className="text-3xl animate-float" style={{ animationDelay: "0.3s" }}>🗺️</span>
-                </div>
-              </div>
-              <h3 className="font-play text-2xl font-bold text-[#1A2A5E]">{t("General Knowledge", "সাধাৰণ জ্ঞান")}</h3>
-              <p className="mt-2 font-body text-gray-500">
-                {t("Amazing facts about the world around you!", "তোমাৰ চাৰিওকাষৰ পৃথিৱীৰ অবিশ্বাস্য তথ্য!")}
-              </p>
-              <div className="mt-auto pt-4">
-                <span className="btn-bounce inline-flex items-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 font-play text-sm font-bold text-white shadow-md transition hover:bg-amber-600">
-                  {t("Explore", "অন্বেষণ")} <span className="inline-block group-hover:animate-wiggle">→</span>
-                </span>
-              </div>
-            </div>
-
-            {/* Mental Ability */}
-            <div className="card-tilt relative rounded-[2.5rem] bg-gradient-to-br from-rose-100 to-rose-50 p-6 shadow-md transition hover:shadow-lg md:p-8 min-h-[320px] flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <span className="rounded-full bg-rose-200/60 px-4 py-1.5 font-play text-xs font-bold text-rose-600">
-                  {t("Subject", "বিষয়")} 04
-                </span>
-              </div>
-              <div className="relative -mx-6 -mt-2 mb-5 h-36 overflow-hidden rounded-2xl bg-gradient-to-br from-rose-300/30 to-rose-200/20 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-around flex-wrap opacity-30">
-                  <span className="text-2xl animate-float" style={{ animationDelay: "0s" }}>💡</span>
-                  <span className="text-xl animate-float" style={{ animationDelay: "0.6s" }}>🧩</span>
-                  <span className="text-lg animate-float" style={{ animationDelay: "1.2s" }}>⚙️</span>
-                </div>
-                <div className="relative flex items-center gap-4">
-                  <span className="text-5xl">🧑‍💻</span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-3xl animate-float">💡</span>
-                    <span className="text-2xl">🧩</span>
-                  </div>
-                  <span className="text-3xl animate-float" style={{ animationDelay: "0.7s" }}>🌟</span>
-                </div>
-              </div>
-              <h3 className="font-play text-2xl font-bold text-[#1A2A5E]">{t("Mental Ability", "মানসিক যোগ্যতা")}</h3>
-              <p className="mt-2 font-body text-gray-500">
-                {t("Brain teasers, logic, and clever thinking!", "মগজ ধাঁধা, যুক্তি, আৰু চতুৰ চিন্তা!")}
-              </p>
-              <div className="mt-auto pt-4">
-                <span className="btn-bounce inline-flex items-center gap-2 rounded-full bg-rose-500 px-5 py-2.5 font-play text-sm font-bold text-white shadow-md transition hover:bg-rose-600">
-                  {t("Explore", "অন্বেষণ")} <span className="inline-block group-hover:animate-wiggle">→</span>
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         {/* Curved blob divider D→E */}
@@ -615,38 +500,38 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#FFD93D] via-[#FF9F45] to-[#FF6B6B]" />
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle, #1A2A5E 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
         <Doodles count={6} items={["🏆", "📚", "⭐", "🎓", "📜", "🌟"]} className="opacity-30" />
-        <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-16">
+        <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-12">
           <div className="text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1 font-play text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
               <Award className="h-3 w-3" /> {t("SOFURA IMPACT", "সঁফুৰা প্ৰভাৱ")}
             </span>
-            <h2 className="font-play mt-3 text-3xl font-bold text-white md:text-4xl">
+            <h2 className="font-play mt-2 text-2xl font-bold text-white md:text-3xl">
               {t("Shaping Young Minds Across Assam", "অসমজুৰি যুৱ মন গঢ় দিয়া")}
             </h2>
-            <p className="mx-auto mt-2 max-w-2xl font-body text-base text-white/85">
+            <p className="mx-auto mt-1 max-w-2xl font-body text-sm text-white/85">
               {t("More than two decades of discovering talent, rewarding excellence, and inspiring students across the state.", "দুই দশকৰো অধিক সময় ধৰি প্ৰতিভা আৱিষ্কাৰ, উৎকৰ্ষতাক পুৰস্কৃত কৰা, আৰু ৰাজ্যজুৰি শিক্ষাৰ্থীক অনুপ্ৰাণিত কৰা।")}
             </p>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-5 shadow-md text-center border border-white/20 md:p-6">
-              <span className="text-3xl block mb-3">🏆</span>
-              <h3 className="font-play text-2xl font-bold text-white">20+ {t("Years", "বছৰ")}</h3>
-              <p className="mt-1 font-body text-xs text-white/70">{t("Talent Discovery Examination", "প্ৰতিভা সন্ধান পৰীক্ষা")}</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-4 shadow-md text-center border border-white/20 md:p-5">
+              <span className="text-2xl block mb-2">🏆</span>
+              <h3 className="font-play text-xl font-bold text-white"><CountUp target={20} suffix="+ " /><span>{t("Years", "বছৰ")}</span></h3>
+              <p className="mt-1 font-body text-[11px] text-white/70">{t("Talent Discovery Examination", "প্ৰতিভা সন্ধান পৰীক্ষা")}</p>
             </div>
-            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-5 shadow-md text-center border border-white/20 md:p-6">
-              <span className="text-3xl block mb-3">👨‍🎓</span>
-              <h3 className="font-play text-2xl font-bold text-white">50,000+</h3>
-              <p className="mt-1 font-body text-xs text-white/70">{t("Students Participated", "অংশগ্ৰহণকাৰী শিক্ষাৰ্থী")}</p>
+            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-4 shadow-md text-center border border-white/20 md:p-5">
+              <span className="text-2xl block mb-2">👨‍🎓</span>
+              <h3 className="font-play text-xl font-bold text-white"><CountUp target={50000} suffix="+" /></h3>
+              <p className="mt-1 font-body text-[11px] text-white/70">{t("Students Participated", "অংশগ্ৰহণকাৰী শিক্ষাৰ্থী")}</p>
             </div>
-            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-5 shadow-md text-center border border-white/20 md:p-6">
-              <span className="text-3xl block mb-3">📍</span>
-              <h3 className="font-play text-2xl font-bold text-white">200+</h3>
-              <p className="mt-1 font-body text-xs text-white/70">{t("Examination Centres", "পৰীক্ষা কেন্দ্ৰ")}</p>
+            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-4 shadow-md text-center border border-white/20 md:p-5">
+              <span className="text-2xl block mb-2">📍</span>
+              <h3 className="font-play text-xl font-bold text-white"><CountUp target={200} suffix="+" /></h3>
+              <p className="mt-1 font-body text-[11px] text-white/70">{t("Examination Centres", "পৰীক্ষা কেন্দ্ৰ")}</p>
             </div>
-            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-5 shadow-md text-center border border-white/20 md:p-6">
-              <span className="text-3xl block mb-3">🎖</span>
-              <h3 className="font-play text-2xl font-bold text-white">5,000+</h3>
-              <p className="mt-1 font-body text-xs text-white/70">{t("Scholarship Recipients", "বৃত্তি প্ৰাপক")}</p>
+            <div className="card-tilt rounded-[1.5rem] bg-white/15 backdrop-blur-sm p-4 shadow-md text-center border border-white/20 md:p-5">
+              <span className="text-2xl block mb-2">🎖</span>
+              <h3 className="font-play text-xl font-bold text-white"><CountUp target={5000} suffix="+" /></h3>
+              <p className="mt-1 font-body text-[11px] text-white/70">{t("Scholarship Recipients", "বৃত্তি প্ৰাপক")}</p>
             </div>
           </div>
         </div>
@@ -756,27 +641,14 @@ function WinnersGallery() {
           {[...WINNERS, ...WINNERS].map((w, i) => (
             <div key={i} className="w-[300px] flex-shrink-0">
               <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-soft)] transition hover:shadow-[var(--shadow-elegant)]">
-                <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+                <div className="relative overflow-hidden bg-secondary">
                   <img
-                    src={magazineImg}
+                    src={EXAM_PHOTOS[i % EXAM_PHOTOS.length]}
                     alt={w.name}
                     width={1280}
                     height={1280}
-                    className="rounded-[2rem] object-cover aspect-square w-full shadow-warm"
+                    className="object-cover aspect-square w-full"
                   />
-                  <div className="absolute top-3 right-3 rounded-full bg-gold px-3 py-1 text-xs font-bold text-gold-foreground shadow">
-                    {w.rank} • {w.year}
-                  </div>
-                  <div className="absolute top-3 left-3 rounded-full bg-[#FF6B6B] px-3 py-1 text-xs font-bold text-white shadow flex items-center gap-1">
-                    🏆 {t("Scholarship Winner", "বৃত্তি বিজয়ী")}
-                  </div>
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-serif text-lg font-bold text-primary truncate">{w.name}</h3>
-                  <p className="mt-1 text-xs text-muted-foreground truncate">{w.school}</p>
-                  <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
-                    {w.rank} {t("Rank", "স্থান")} • {w.year} • {w.amount}
-                  </p>
                 </div>
               </div>
             </div>
@@ -785,4 +657,23 @@ function WinnersGallery() {
       </div>
     </section>
   );
+}
+
+function CountUp({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, duration]);
+  return <>{count.toLocaleString()}{suffix}</>;
 }

@@ -17,6 +17,7 @@ import { Route as ExamRouteImport } from './routes/exam'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PressReleaseSlugRouteImport } from './routes/press-release.$slug'
 
 const PrizeRoute = PrizeRouteImport.update({
   id: '/prize',
@@ -58,6 +59,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PressReleaseSlugRoute = PressReleaseSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PressReleaseRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,8 +72,9 @@ export interface FileRoutesByFullPath {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
-  '/press-release': typeof PressReleaseRoute
+  '/press-release': typeof PressReleaseRouteWithChildren
   '/prize': typeof PrizeRoute
+  '/press-release/$slug': typeof PressReleaseSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +83,9 @@ export interface FileRoutesByTo {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
-  '/press-release': typeof PressReleaseRoute
+  '/press-release': typeof PressReleaseRouteWithChildren
   '/prize': typeof PrizeRoute
+  '/press-release/$slug': typeof PressReleaseSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +95,9 @@ export interface FileRoutesById {
   '/exam': typeof ExamRoute
   '/gallery': typeof GalleryRoute
   '/magazine': typeof MagazineRoute
-  '/press-release': typeof PressReleaseRoute
+  '/press-release': typeof PressReleaseRouteWithChildren
   '/prize': typeof PrizeRoute
+  '/press-release/$slug': typeof PressReleaseSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/magazine'
     | '/press-release'
     | '/prize'
+    | '/press-release/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/magazine'
     | '/press-release'
     | '/prize'
+    | '/press-release/$slug'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/magazine'
     | '/press-release'
     | '/prize'
+    | '/press-release/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,7 +142,7 @@ export interface RootRouteChildren {
   ExamRoute: typeof ExamRoute
   GalleryRoute: typeof GalleryRoute
   MagazineRoute: typeof MagazineRoute
-  PressReleaseRoute: typeof PressReleaseRoute
+  PressReleaseRoute: typeof PressReleaseRouteWithChildren
   PrizeRoute: typeof PrizeRoute
 }
 
@@ -192,8 +204,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/press-release/$slug': {
+      id: '/press-release/$slug'
+      path: '/$slug'
+      fullPath: '/press-release/$slug'
+      preLoaderRoute: typeof PressReleaseSlugRouteImport
+      parentRoute: typeof PressReleaseRoute
+    }
   }
 }
+
+interface PressReleaseRouteChildren {
+  PressReleaseSlugRoute: typeof PressReleaseSlugRoute
+}
+
+const PressReleaseRouteChildren: PressReleaseRouteChildren = {
+  PressReleaseSlugRoute: PressReleaseSlugRoute,
+}
+
+const PressReleaseRouteWithChildren = PressReleaseRoute._addFileChildren(
+  PressReleaseRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -202,7 +233,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExamRoute: ExamRoute,
   GalleryRoute: GalleryRoute,
   MagazineRoute: MagazineRoute,
-  PressReleaseRoute: PressReleaseRoute,
+  PressReleaseRoute: PressReleaseRouteWithChildren,
   PrizeRoute: PrizeRoute,
 }
 export const routeTree = rootRouteImport

@@ -210,6 +210,121 @@ function About() {
         </div>
       </section>
 
+      {/* ADVISORY BOARD */}
+      <section className="bg-secondary/40 py-20">
+        <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <div className="text-center">
+            <span className="text-xs font-semibold uppercase tracking-widest text-gold">
+              {t("Advisory Board", "পৰামৰ্শদাতা ব'ৰ্ড")}
+            </span>
+            <h2 className="mt-1 font-serif text-3xl font-bold text-primary md:text-4xl">
+              {t("Members of the Advisory Board", "পৰামৰ্শদাতা ব'ৰ্ডৰ সদস্যসকল")}
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              {t(
+                "Distinguished individuals guiding SOFURA's mission.",
+                "সঁফুৰাৰ লক্ষ্যত দিশ দেখুওৱা বিশিষ্ট ব্যক্তিসকল।"
+              )}
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { name: "Dr. Kulendu Pathak", title: "Former Vice Chancellor, Dibrugarh University" },
+              { name: "Dr. Kuldinar Saikia", title: "Chief Editor, Sofura" },
+              { name: "Dr. Ramesh Chandra Deka", title: "Retired Director, AIIMS" },
+              { name: "Raghab Chandra Deka", title: "Retired Scientist, IIG" },
+              { name: "Prof. Ganga Pada Choudhury", title: "Retired Principal, L.C.B. College" },
+              { name: "Dr. Abani Kumar Bhagawati", title: "Professor, Gauhati University" },
+              { name: "Phanindra Kumar Deb Choudhury", title: "Writer" },
+              { name: "Dhruba Kumar Das", title: "Editor" },
+              { name: "Dr. Mridusmita Phukan", title: "Writer" },
+              { name: "Dr. Homeswar Kalita", title: "Retired Principal, Gauhati Commerce College" },
+              { name: "Dr. Arup Kumar Misra", title: "Director, ASTECT" },
+              { name: "Dr. Dharanidhar Goswami", title: "Former Director/Secretary, A.H.S.E. Council" },
+              { name: "Dr. Samudra Gupta Kashyap", title: "Senior Correspondent, Indian Express" },
+              { name: "Utpal Dutta", title: "Professor & Dean, Assam Down Town University" },
+              { name: "Dr. Satyakam Barthakur", title: "Reader, Dibrugarh University" },
+              { name: "Probin Burhagohain", title: "Senior Manager, Dholla Tea Estate" },
+              { name: "Hemchandra Haloi", title: "Retired Professor, Bhattadev University, Pathsala" },
+              { name: "Dr. Arabinda Rajkhowa", title: "Professor, North Lakhimpur College" },
+              { name: "Dr. Bhab Sarmah", title: "Professor, IIT Guwahati" },
+              { name: "Paresh Baishya", title: "Writer" },
+              { name: "Dr. Satyajit Kalita", title: "Principal, Kanya Mahavidyalaya" },
+              { name: "Arindam Barkataki", title: "Assistant Professor, A.D.P. College, Nagaon" },
+              { name: "Rashmi Narzaree", title: "Author" },
+              { name: "Amrita Bhattacharyya", title: "Teacher, Holy Child Higher Secondary School, Guwahati" },
+              { name: "Rupam Baruah", title: "Senior Journalist, Former Editor, Sofura" },
+              { name: "Achyut Patowari", title: "Senior Journalist" },
+              { name: "Debajit Bhuyan", title: "Executive Editor, Prag News" },
+              { name: "Ajanta Buragohain", title: "Author and Freelance Editor" },
+              { name: "Pramod Kalita", title: "Secretary, Publication Board" },
+              { name: "Rajib Barthakur", title: "Regional Office, Central Board of Film Certification" },
+              { name: "Dr. Bhaskarjyoti Sarma", title: "Professor, Anundoram Borooah Institute" },
+            ].map((person, i) => (
+              <div key={i} className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] transition hover:shadow-[var(--shadow-elegant)]">
+                <h3 className="font-serif text-base font-bold text-primary">{person.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{person.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT MANAGEMENT TEAM */}
+      <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+        <div className="text-center">
+          <span className="text-xs font-semibold uppercase tracking-widest text-gold">
+            {t("Project Management", "প্ৰকল্প পৰিচালনা")}
+          </span>
+          <h2 className="mt-1 font-serif text-3xl font-bold text-primary md:text-4xl">
+            {t("Project Management Team", "প্ৰকল্প পৰিচালনা দল")}
+          </h2>
+        </div>
+        <div className="mt-10 space-y-6">
+          <div className="rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/5 to-transparent p-6 shadow-[var(--shadow-soft)]">
+            <div className="text-xs font-semibold uppercase tracking-widest text-gold">
+              {t("Project Director", "প্ৰকল্প সঞ্চালক")}
+            </div>
+            <h3 className="mt-2 font-serif text-2xl font-bold text-primary">Dr. Pulak Bhattacharyya</h3>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+              <div className="text-xs font-semibold uppercase tracking-widest text-gold">
+                {t("Chief Supervisor", "প্ৰধান পৰ্যবেক্ষক")}
+              </div>
+              <h3 className="mt-2 font-serif text-lg font-bold text-primary">Sri Sailen Baishya</h3>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+              <div className="text-xs font-semibold uppercase tracking-widest text-gold">
+                {t("Programme Coordinators", "কাৰ্যসূচী সমন্বয়ক")}
+              </div>
+              <div className="mt-2 space-y-1">
+                <div className="font-serif text-base font-bold text-primary">Sri Utpal Sen Deka</div>
+                <div className="font-serif text-base font-bold text-primary">Dr. Hirakjyoti Das</div>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+            <div className="text-xs font-semibold uppercase tracking-widest text-gold">
+              {t("Coordinators", "সমন্বয়ক")}
+            </div>
+            <div className="mt-3 space-y-2">
+              {[
+                { name: "Mrigen Dutta", phone: "86380 16257" },
+                { name: "Guneswar Deka", phone: "78969 95834" },
+                { name: "Mukul Baruah", phone: "98640 12916" },
+                { name: "Runu Devi", phone: "98642 68698" },
+              ].map((coord, i) => (
+                <div key={i} className="flex items-center justify-between gap-4 border-b border-border/50 pb-1.5 last:border-0">
+                  <span className="font-medium text-primary">{coord.name}</span>
+                  <span className="text-sm text-muted-foreground">{coord.phone}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* MAGAZINE FEATURES */}
       <section className="bg-secondary/40 py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -242,36 +357,6 @@ function About() {
                 </div>
                 <h3 className="mt-4 font-serif text-lg font-bold text-primary">{feat.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{feat.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* IMPACT STATS */}
-      <section className="mx-auto max-w-7xl px-4 py-20 md:px-6">
-        <div className="relative overflow-hidden rounded-[2rem] bg-[var(--gradient-royal)] px-6 py-16 text-center text-primary-foreground md:px-12">
-          <div className="absolute inset-0 opacity-10 [background:radial-gradient(circle_at_50%_0%,white,transparent_60%)]" />
-          <Trophy className="mx-auto h-10 w-10 text-gold" />
-          <h2 className="mt-4 font-serif text-3xl font-bold md:text-4xl">
-            {t("Our Impact Across Assam", "অসমজুৰি আমাৰ প্ৰভাৱ")}
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl opacity-85">
-            {t(
-              "For over four decades, SOFURA has touched the lives of countless children across every district of Assam.",
-              "চাৰি দশকৰো অধিক সময় ধৰি, সঁফুৰাই অসমৰ প্ৰতিটো জিলাৰ অসংখ্য শিশুৰ জীৱনত স্পৰ্শ কৰিছে।"
-            )}
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
-            {[
-              { n: "40+", l: t("Years of Legacy", "বছৰৰ ঐতিহ্য") },
-              { n: "1L+", l: t("Students Reached", "ছাত্ৰ-ছাত্ৰী") },
-              { n: "30+", l: t("Districts Covered", "জিলা") },
-              { n: "1982", l: t("Year Founded", "প্ৰতিষ্ঠা বৰ্ষ") },
-            ].map((s, i) => (
-              <div key={i}>
-                <div className="font-serif text-4xl font-bold text-gold md:text-5xl">{s.n}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider opacity-80">{s.l}</div>
               </div>
             ))}
           </div>

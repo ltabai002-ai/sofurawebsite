@@ -2,12 +2,21 @@ import { spawn } from "node:child_process";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { createClient } from "@sanity/client";
 
 const PORT = 4173;
 const BASE = "http://localhost:" + PORT;
-const DIST_CLIENT = new URL("../dist/client/", import.meta.url).pathname;
+const DIST_CLIENT = fileURLToPath(new URL("../dist/client/", import.meta.url));
 
-const ROUTES = ["/", "/exam", "/about", "/gallery", "/contact", "/press-release", "/prize"];
+const sanity = createClient({
+  projectId: "kwmd4k9e",
+  dataset: "production",
+  useCdn: true,
+  apiVersion: "2024-01-01",
+});
+
+const ROUTES = ["/", "/exam", "/about", "/gallery", "/contact", "/press-release", "/prize", "/magazine"];
 
 function waitForServer(url, maxRetries = 30, delayMs = 1000) {
   return new Promise((resolve, reject) => {
@@ -66,6 +75,31 @@ async function generate() {
       }
       await writeFile(outPath, html, "utf-8");
       console.log("    -> saved", path.relative(DIST_CLIENT, outPath));
+    }
+
+    // Prerender individual press-release article pages
+    try {
+      const slugs = await sanity.fetch('*[_type == "post" && defined(slug.current)]{ "slug": slug.current }');
+      for (const { slug } of slugs) {
+        const route = `/press-release/${slug}`;
+        const url = BASE + route;
+        console.log("  Fetching", route);
+        const res = await fetch(url);
+        if (!res.ok) {
+          console.warn("    WARN:", route, "returned", res.status);
+          continue;
+        }
+        const html = await res.text();
+        const outPath = path.join(DIST_CLIENT, "press-release", slug, "index.html");
+        const outDir = path.dirname(outPath);
+        if (!existsSync(outDir)) {
+          await mkdir(outDir, { recursive: true });
+        }
+        await writeFile(outPath, html, "utf-8");
+        console.log("    -> saved", path.relative(DIST_CLIENT, outPath));
+      }
+    } catch (e) {
+      console.warn("    Skipped press-release articles (Sanity fetch failed):", e.message);
     }
 
     // Also copy index.html as 404.html for SPA fallback

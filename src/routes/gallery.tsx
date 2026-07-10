@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X, ChevronDown } from "lucide-react";
-import founderImg from "@/assets/founder.webp";
 import { useLang } from "@/components/LanguageContext";
 
 const examImages = import.meta.glob<string>('@/assets/examimgassam/*.webp', { eager: true, query: '?url', import: 'default' });
+const activityImages = import.meta.glob<string>('@/assets/OtherActivites/*.webp', { eager: true, query: '?url', import: 'default' });
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -21,11 +21,10 @@ const PHOTOS = Object.values(examImages).map((src) => ({
   caption: "Sofura Talent Examination",
 }));
 
-const ARCHIVES = [
-  { src: founderImg, caption: "Editorial meeting, Guwahati — 1985" },
-  { src: founderImg, caption: "Magazine launch — 1982" },
-  { src: founderImg, caption: "First scholarship ceremony — 1989" },
-];
+const ACTIVITIES = Object.values(activityImages).map((src) => ({
+  src,
+  caption: "Sofura Activities",
+}));
 
 function Gallery() {
   const { t } = useLang();
@@ -66,25 +65,25 @@ function Gallery() {
         </div>
       )}
 
-      {/* Archives */}
+      {/* Other Activities */}
       <section className="mt-20">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-gold">{t("1980s", "১৯৮০ৰ দশক")}</span>
-            <h2 className="mt-1 font-serif text-3xl font-bold text-primary md:text-4xl">{t("Historical Archives", "ঐতিহাসিক সংগ্ৰহ")}</h2>
+            <span className="text-xs font-semibold uppercase tracking-widest text-gold">{t("Activities", "কাৰ্যকলাপ")}</span>
+            <h2 className="mt-1 font-serif text-3xl font-bold text-primary md:text-4xl">{t("Other Activities", "অন্যান্য কাৰ্যকলাপ")}</h2>
           </div>
         </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {ARCHIVES.map((a, i) => (
+        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
+          {ACTIVITIES.map((a, i) => (
             <button
               key={i}
               onClick={() => setLightbox({ src: a.src, caption: a.caption })}
-              className="group overflow-hidden rounded-2xl border border-border bg-card text-left"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card aspect-square focus:outline-none focus:ring-2 focus:ring-gold"
             >
-              <div className="aspect-[4/3] overflow-hidden bg-secondary">
-                <img src={a.src} alt={a.caption} loading="lazy" className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-105" />
+              <img src={a.src} alt={a.caption} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-110" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-left opacity-0 transition group-hover:opacity-100">
+                <div className="text-xs font-semibold text-white">{a.caption}</div>
               </div>
-              <div className="p-4 text-sm font-medium text-primary">{a.caption}</div>
             </button>
           ))}
         </div>

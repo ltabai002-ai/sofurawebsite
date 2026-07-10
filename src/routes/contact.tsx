@@ -80,9 +80,9 @@ function Contact() {
             />
             {errors.message && <p className="mt-1 text-xs text-destructive">{errors.message}</p>}
           </div>
-          <button type="submit" className="inline-flex items-center gap-2 rounded-2xl bg-primary px-7 py-3.5 font-semibold text-primary-foreground hover:opacity-90 shadow-[var(--shadow-soft)]">
+          <a href="https://wa.me/918638731659" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-2xl bg-primary px-7 py-3.5 font-semibold text-primary-foreground hover:opacity-90 shadow-[var(--shadow-soft)]">
             <Send className="h-4 w-4" /> {t("Send Message", "বাৰ্তা পঠিয়াওক")}
-          </button>
+          </a>
         </form>
 
         <div className="flex flex-wrap justify-center gap-4 lg:col-span-2">
