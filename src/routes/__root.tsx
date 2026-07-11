@@ -38,9 +38,19 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  const isChunkLoadError = /Failed to fetch dynamically imported module|Importing a module script failed|Loading chunk|ChunkLoadError/i.test(
+    `${error.name} ${error.message}`,
+  );
+
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
+    if (!isChunkLoadError || typeof window === "undefined") return;
+
+    const reloadKey = "sofura:chunk-reload-attempted";
+    if (window.sessionStorage.getItem(reloadKey) === "1") return;
+    window.sessionStorage.setItem(reloadKey, "1");
+    window.location.reload();
+  }, [error, isChunkLoadError]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -54,7 +64,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
-              router.invalidate();
+              if (isChunkLoadError) {
+                window.sessionStorage.removeItem("sofura:chunk-reload-attempted");
+                window.location.reload();
+                return;
+              }
+              void router.invalidate();
               reset();
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
